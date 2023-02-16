@@ -1,55 +1,50 @@
-const Header = ({ name }: { name: string }) => <h1>{name}</h1>;
-
-interface CoursePart {
-  name: string;
-  exerciseCount: number;
-}
-
-interface ContentProps {
-  parts: CoursePart[];
-}
-
-const Content = (props: ContentProps) => (
-  <>
-    <p>
-      {props.parts[0].name} {props.parts[0].exerciseCount}
-    </p>
-    <p>
-      {props.parts[1].name} {props.parts[1].exerciseCount}
-    </p>
-    <p>
-      {props.parts[2].name} {props.parts[2].exerciseCount}
-    </p>
-  </>
-);
-
-interface TotalProps {
-  parts: CoursePart[];
-}
-
-const Total = (props: TotalProps) => (
-  <>
-    <p>
-      Number of exercises{' '}
-      {props.parts.reduce((carry, part) => carry + part.exerciseCount, 0)}
-    </p>
-  </>
-);
+import Header from './components/Header';
+import Content from './components/Content';
+import Total from './components/Total';
+import { CoursePart } from './types';
 
 const App = () => {
   const courseName = 'Half Stack application development';
-  const courseParts = [
+
+  const courseParts: CoursePart[] = [
     {
       name: 'Fundamentals',
       exerciseCount: 10,
+      description: 'This is an awesome course part',
+      kind: 'basic',
     },
     {
       name: 'Using props to pass data',
       exerciseCount: 7,
+      groupProjectCount: 3,
+      kind: 'group',
+    },
+    {
+      name: 'Basics of type Narrowing',
+      exerciseCount: 7,
+      description: 'How to go from unknown to string',
+      kind: 'basic',
     },
     {
       name: 'Deeper type usage',
       exerciseCount: 14,
+      description: 'Confusing description',
+      backroundMaterial:
+        'https://type-level-typescript.com/template-literal-types',
+      kind: 'background',
+    },
+    {
+      name: 'TypeScript in frontend',
+      exerciseCount: 10,
+      description: 'a hard part',
+      kind: 'basic',
+    },
+    {
+      name: 'Backend development',
+      exerciseCount: 21,
+      description: 'Typing the backend',
+      requirements: ['nodejs', 'jest'],
+      kind: 'requirements',
     },
   ];
 
